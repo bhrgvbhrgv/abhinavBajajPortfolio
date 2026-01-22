@@ -1,0 +1,208 @@
+/* ============================================
+   NAVBAR COMPONENT STYLES
+   ============================================ */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-sticky);
+    background-color: transparent;
+    transition: all var(--transition-base);
+    padding: var(--spacing-lg) 0;
+}
+
+.navbar-scrolled {
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-md) 0;
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.navbar-logo {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform var(--transition-base);
+}
+
+.navbar-logo:hover {
+    transform: translateY(-2px);
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-grey-800);
+    line-height: 1.2;
+}
+
+.logo-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-grey-500);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Desktop Menu */
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    list-style: none;
+}
+
+.navbar-link {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-grey-700);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm) var(--spacing-md);
+    position: relative;
+    transition: color var(--transition-base);
+}
+
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--color-terracotta);
+    transition: width var(--transition-base);
+}
+
+.navbar-link:hover {
+    color: var(--color-terracotta);
+}
+
+.navbar-link:hover::after {
+    width: 80%;
+}
+
+/* Mobile Menu Toggle */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    z-index: var(--z-fixed);
+}
+
+.navbar-toggle span {
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-grey-800);
+    transition: all var(--transition-base);
+    border-radius: 2px;
+}
+
+.navbar-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu */
+.navbar-mobile {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-2xl);
+    padding: var(--spacing-5xl) var(--spacing-xl) var(--spacing-xl);
+    transition: right var(--transition-slow);
+    z-index: var(--z-fixed);
+}
+
+.navbar-mobile.active {
+    right: 0;
+}
+
+.navbar-mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    list-style: none;
+}
+
+.navbar-mobile-link {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-grey-700);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-md);
+    text-align: left;
+    width: 100%;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.navbar-mobile-link:hover {
+    background-color: var(--color-beige-light);
+    color: var(--color-terracotta);
+    transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .logo-text {
+        font-size: var(--font-size-lg);
+    }
+
+    .logo-subtitle {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: var(--spacing-md) 0;
+    }
+
+    .navbar-scrolled {
+        padding: var(--spacing-sm) 0;
+    }
+
+    .navbar-mobile {
+        width: 100%;
+        right: -100%;
+    }
+}
