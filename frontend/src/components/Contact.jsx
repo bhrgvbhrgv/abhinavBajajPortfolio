@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
+
+// Initialize EmailJS
+emailjs.init('I34Zvhhl5UHEoS5_R');
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -11,6 +15,7 @@ const Contact = () => {
 
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -51,20 +56,41 @@ const Contact = () => {
         return newErrors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = validateForm();
 
         if (Object.keys(newErrors).length === 0) {
-            // Form is valid
-            console.log('Form submitted:', formData);
-            setSubmitted(true);
-            setFormData({ name: '', email: '', phone: '', message: '' });
+            setLoading(true);
+            try {
+                // Send email using EmailJS
+                const templateParams = {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    phone: formData.phone,
+                    message: formData.message,
+                    to_email: '123bhargavdas@gmail.com'
+                };
 
-            // Reset success message after 5 seconds
-            setTimeout(() => {
-                setSubmitted(false);
-            }, 5000);
+                await emailjs.send(
+                    'default_service', // This will be auto-detected
+                    'template_c92qjjs',
+                    templateParams
+                );
+
+                setSubmitted(true);
+                setFormData({ name: '', email: '', phone: '', message: '' });
+
+                // Reset success message after 5 seconds
+                setTimeout(() => {
+                    setSubmitted(false);
+                }, 5000);
+            } catch (error) {
+                console.error('EmailJS error:', error);
+                setErrors({ submit: 'Failed to send message. Please try again.' });
+            } finally {
+                setLoading(false);
+            }
         } else {
             setErrors(newErrors);
         }
@@ -91,6 +117,12 @@ const Contact = () => {
                             {submitted && (
                                 <div className="success-message">
                                     ✓ Thank you! Your message has been sent successfully. We'll get back to you soon.
+                                </div>
+                            )}
+
+                            {errors.submit && (
+                                <div className="error-message" style={{ marginBottom: '20px', color: '#e74c3c', fontSize: '14px' }}>
+                                    {errors.submit}
                                 </div>
                             )}
 
@@ -150,8 +182,12 @@ const Contact = () => {
                                 {errors.message && <span className="error-message">{errors.message}</span>}
                             </div>
 
-                            <button type="submit" className="btn btn-primary btn-lg">
-                                Send Message
+                            <button 
+                                type="submit" 
+                                className="btn btn-primary btn-lg"
+                                disabled={loading}
+                            >
+                                {loading ? 'Sending...' : 'Send Message'}
                             </button>
                         </form>
                     </div>
