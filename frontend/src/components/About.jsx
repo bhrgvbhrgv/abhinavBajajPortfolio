@@ -11,7 +11,7 @@ const About = () => {
                             Crafting Excellence in Every Detail
                         </h2>
                         <p className="about-description">
-                            With over 15 years of experience in construction and interior design,
+                            With over 5 years of experience in construction and interior design,
                             I specialize in creating spaces that seamlessly blend functionality with
                             aesthetic appeal. My approach combines innovative design thinking with
                             meticulous attention to detail, ensuring every project exceeds expectations.
@@ -46,7 +46,12 @@ const About = () => {
 
                     <div className="about-image">
                         <div className="image-wrapper">
-                            <div className="image-decoration"></div>
+                            <img 
+                                src="/images/abhinavBajajPic.png" 
+                                alt="Profile" 
+                                className="profile-image"
+                                style={{ width: '100%', height: 'auto', borderRadius: '20px', boxShadow: '0 4px 24px rgba(0,0,0,0.10)' }}
+                            />
                         </div>
                     </div>
                 </div>

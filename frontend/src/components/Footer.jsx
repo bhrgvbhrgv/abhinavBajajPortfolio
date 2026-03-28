@@ -70,7 +70,7 @@ const Footer = () => {
                         <ul>
                             <li>
                                 <span className="contact-icon">📞</span>
-                                +91 98765 43210
+                                +91 9522529999
                             </li>
                             <li>
                                 <span className="contact-icon">✉️</span>

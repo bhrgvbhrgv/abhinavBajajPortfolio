@@ -103,7 +103,7 @@ const Contact = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     className={errors.name ? 'error' : ''}
-                                    placeholder="John Doe"
+                                    placeholder="Abhinav Bajaj"
                                 />
                                 {errors.name && <span className="error-message">{errors.name}</span>}
                             </div>
@@ -117,7 +117,7 @@ const Contact = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     className={errors.email ? 'error' : ''}
-                                    placeholder="john@example.com"
+                                    placeholder="abhinav@example.com"
                                 />
                                 {errors.email && <span className="error-message">{errors.email}</span>}
                             </div>
@@ -131,7 +131,7 @@ const Contact = () => {
                                     value={formData.phone}
                                     onChange={handleChange}
                                     className={errors.phone ? 'error' : ''}
-                                    placeholder="+1 (555) 123-4567"
+                                    placeholder="+91 9522529999"
                                 />
                                 {errors.phone && <span className="error-message">{errors.phone}</span>}
                             </div>
@@ -161,7 +161,7 @@ const Contact = () => {
                         <div className="info-card">
                             <div className="info-icon">📞</div>
                             <h4>Phone</h4>
-                            <p>+91 98765 43210</p>
+                            <p>+91 9522529999</p>
                             <p className="info-subtext">Mon-Sat, 9AM-6PM</p>
                         </div>
 
